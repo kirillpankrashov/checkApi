@@ -1,22 +1,14 @@
 const express = require('express');
 const app = express();
-const port = 4000;
 
-// Разрешаем принимать JSON в теле запросов
-app.use(express.json());
-
-// Пример эндпоинта, который возвращает true или false
-app.post('/check', (req, res) => {
-    const { condition } = req.body;
-
-    // Пример простой логики
-    if (condition === 'ok') {
-        res.json({ result: true });
-    } else {
-        res.json({ result: false });
-    }
+// Простой маршрут API, который возвращает true или false
+app.get('/api/check', (req, res) => {
+    const result = Math.random() < 0.5; // Вернуть true или false случайным образом
+    res.json({ result });
 });
 
-app.listen(port, () => {
-    console.log(`Server running at https://check-api-jade.vercel.app/:${port}`);
+// Настроим сервер для прослушивания на порту, предоставляемом Vercel
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
