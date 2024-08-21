@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
+const port = 3000;
 
-// Простой маршрут API, который возвращает true или false
 app.get('/api/check', (req, res) => {
-    const result = Math.random() < 0.5; // Вернуть true или false случайным образом
-    res.json({ result });
+    // Логика проверки
+    const isValid = true; // Или false, в зависимости от логики
+    
+    // Возвращаем true или false
+    res.json({ result: isValid });
 });
 
-// Настроим сервер для прослушивания на порту, предоставляемом Vercel
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`API listening at http://localhost:${port}`);
 });
